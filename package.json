@@ -1,0 +1,36 @@
+{
+  "name": "skeleton-go-webview",
+  "version": "0.0.1",
+  "description": "Skeleton app webview with golang",
+  "engines": {
+    "go": "1.16"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "window"
+  ],
+  "contributors": [
+    "stephen@epyo.eu"
+  ],
+  "scripts": {
+    "build": "make",
+    "clean": "make clean",
+    "svn": "bash scripts/release.sh"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephendltg/skeleton-go-webview.git"
+  },
+  "keywords": [
+    "golang",
+    "webview"
+  ],
+  "author": "stephendltg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephendltg/skeleton-go-webview/issues"
+  },
+  "homepage": "https://github.com/stephendltg/skeleton-go-webview#readme"
+}
