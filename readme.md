@@ -8,6 +8,10 @@ It uses Cocoa/WebKit on macOS, gtk-webkit2 on Linux and Edge on Windows 10.
 
 On Linux you get a standalone executable. It will depend on GTK3 and GtkWebkit2, so if you distribute your app in DEB or RPM format include those dependencies. An application icon can be specified by providing a .desktop file.
 
+```linux
+sudo apt-get install libwebkit2gtk-4.0-dev
+```
+
 On MacOS you are likely to ship an app bundle. Make the following directory structure and just zip it:
 
 example.app
