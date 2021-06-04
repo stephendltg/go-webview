@@ -8,9 +8,9 @@ GOGET=$(GOCMD) get
 GOVET=$(GOCMD) vet
 GOFMT=gofmt
 GOLINT=golint
-BINARY_NAME=epyo-manager
-PKG_LINUX=build/epyo-manager-linux
-PKG_RASP=build/epyo-manager-rasp
+BINARY_NAME=web-manager
+PKG_LINUX=build/web-manager-linux
+PKG_RASP=build/web-manager-rasp
 VERSION := $(shell node -p "require('./package.json').version")
 AUTHOR=stephendltg
 
