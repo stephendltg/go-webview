@@ -1,9 +1,0 @@
-Package: epyo-manager
-Version: 0.0.1
-Section: custom
-Architecture: all
-Essential: no
-Depends: libwebkit2gtk-4.0-dev
-Maintainer: stephendltg
-Description: Application skeleton webview
-Homepage: https://github.com/stephendltg/skeleton-go-webview

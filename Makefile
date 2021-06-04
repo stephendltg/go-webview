@@ -36,6 +36,8 @@ build-deb:
 	echo "Homepage: https://github.com/stephendltg/skeleton-go-webview" >> $(PKG_LINUX)/DEBIAN/control
 	GOOS=linux $(GOBUILD) -v -o $(PKG_LINUX)/usr/bin/$(BINARY_NAME) .
 	sudo dpkg-deb --build $(PKG_LINUX)
+	rm -r $(PKG_LINUX)/*
+	rmdir $(PKG_LINUX)
 
 build-deb-rasp:
 	mkdir -p $(PKG_RASP)/DEBIAN
@@ -52,6 +54,8 @@ build-deb-rasp:
 	GOOS=linux $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
 	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
 	sudo dpkg-deb --build $(PKG_RASP)
+	rm -r $(PKG_RASP)/*
+	rmdir $(PKG_RASP)
 
 build-linux:
 	GOOS=linux $(GOBUILD) -v -o $(BINARY_NAME)/usr/bin/$(BINARY_NAME) .
