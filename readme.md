@@ -27,3 +27,18 @@ On Windows you probably would like to have a custom icon for your executable. It
 
 Also, if you want to cross-compile your webview app - use xgo (https://github.com/karalabe/xgo).
 
+## GENERATE DEBIAN PACKAGE
+
+__ref:__ http://sdz.tdct.org/sdz/creer-un-paquet-deb.html
+
+__red:__ https://github.com/practice-golang/hello-cmake
+
+__ref:__ https://stackoverflow.com/questions/61507209/creating-a-go-binary-as-debian-binary-package-for-a-custom-repository
+
+
+## INSTALL AND REMOVE DEB
+
+```
+sudo dpkg -i nom_du_paquet.deb
+sudo apt-get remove nom_du_paquet
+```

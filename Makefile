@@ -8,7 +8,10 @@ GOGET=$(GOCMD) get
 GOVET=$(GOCMD) vet
 GOFMT=gofmt
 GOLINT=golint
-BINARY_NAME=test
+BINARY_NAME=epyo-manager
+PKG_LINUX=build/epyo-manager-linux
+PKG_RASP=build/epyo-manager-rasp
+VERSION := $(shell node -p "require('./package.json').version")
 AUTHOR=stephendltg
 
 all: deps tool build-app
@@ -19,8 +22,39 @@ dev:
 build-app:
 	$(GOBUILD) -v -race .
 
+build-deb:
+	mkdir -p $(PKG_LINUX)/DEBIAN
+	mkdir -p $(PKG_LINUX)/usr/bin/
+	echo "Package: $(BINARY_NAME)" > $(PKG_LINUX)/DEBIAN/control
+	echo "Version: $(VERSION)" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Section: custom" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Architecture: all" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Essential: no" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Depends: libwebkit2gtk-4.0-dev" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Maintainer: $(AUTHOR)" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Description: Application skeleton webview" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Homepage: https://github.com/stephendltg/skeleton-go-webview" >> $(PKG_LINUX)/DEBIAN/control
+	GOOS=linux $(GOBUILD) -v -o $(PKG_LINUX)/usr/bin/$(BINARY_NAME) .
+	sudo dpkg-deb --build $(PKG_LINUX)
+
+build-deb-rasp:
+	mkdir -p $(PKG_RASP)/DEBIAN
+	mkdir -p $(PKG_RASP)/usr/bin/
+	echo "Package: $(BINARY_NAME)" > $(PKG_RASP)/DEBIAN/control
+	echo "Version: $(VERSION)" >> $(PKG_RASP)/DEBIAN/control
+	echo "Section: custom" >> $(PKG_RASP)/DEBIAN/control
+	echo "Architecture: all" >> $(PKG_RASP)/DEBIAN/control
+	echo "Essential: no" >> $(PKG_RASP)/DEBIAN/control
+	echo "Depends: libwebkit2gtk-4.0-dev" >> $(PKG_RASP)/DEBIAN/control
+	echo "Maintainer: $(AUTHOR)" >> $(PKG_RASP)/DEBIAN/control
+	echo "Description: Application skeleton webview" >> $(PKG_RASP)/DEBIAN/control
+	echo "Homepage: https://github.com/stephendltg/skeleton-go-webview" >> $(PKG_RASP)/DEBIAN/control
+	GOOS=linux $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
+	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
+	sudo dpkg-deb --build $(PKG_RASP)
+
 build-linux:
-	GOOS=linux $(GOBUILD) -v -o build/$(BINARY_NAME) .
+	GOOS=linux $(GOBUILD) -v -o $(BINARY_NAME)/usr/bin/$(BINARY_NAME) .
 
 build-rasp:
 	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o build/$(BINARY_NAME)-rasp .
