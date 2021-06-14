@@ -8,13 +8,21 @@ GOGET=$(GOCMD) get
 GOVET=$(GOCMD) vet
 GOFMT=gofmt
 GOLINT=golint
-BINARY_NAME=web-manager
-PKG_LINUX=build/web-manager-linux
-PKG_RASP=build/web-manager-rasp
+BINARY_NAME=$(shell node -p "require('./package.json').name")
+PKG_LINUX=build/${BINARY_NAME}-linux
+PKG_RASP=build/${BINARY_NAME}-rasp
 VERSION := $(shell node -p "require('./package.json').version")
+DESCRIPTION := $(shell node -p "require('./package.json').description")
+HOMEPAGE := $(shell node -p "require('./package.json').homepage")
 AUTHOR=stephendltg
+NODE=v14.16.1
+NVM=v0.38.0
 
 all: deps tool build-app
+
+pre-install: 
+	@echo "Installing project ${BINARY_NAME}..."
+	. ${NVM_DIR}/nvm.sh && nvm install ${NODE} && nvm use ${NODE}
 
 dev:
 	$(GORUN) main.go
@@ -32,8 +40,8 @@ build-deb:
 	echo "Essential: no" >> $(PKG_LINUX)/DEBIAN/control
 	echo "Depends: libwebkit2gtk-4.0-dev" >> $(PKG_LINUX)/DEBIAN/control
 	echo "Maintainer: $(AUTHOR)" >> $(PKG_LINUX)/DEBIAN/control
-	echo "Description: Application skeleton webview" >> $(PKG_LINUX)/DEBIAN/control
-	echo "Homepage: https://github.com/stephendltg/skeleton-go-webview" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Description: $(DESCRIPTION)" >> $(PKG_LINUX)/DEBIAN/control
+	echo "Homepage: ${HOMEPAGE}" >> $(PKG_LINUX)/DEBIAN/control
 	GOOS=linux $(GOBUILD) -v -o $(PKG_LINUX)/usr/bin/$(BINARY_NAME) .
 	sudo dpkg-deb --build $(PKG_LINUX)
 	rm -r $(PKG_LINUX)/*
@@ -49,8 +57,8 @@ build-deb-rasp:
 	echo "Essential: no" >> $(PKG_RASP)/DEBIAN/control
 	echo "Depends: libwebkit2gtk-4.0-dev" >> $(PKG_RASP)/DEBIAN/control
 	echo "Maintainer: $(AUTHOR)" >> $(PKG_RASP)/DEBIAN/control
-	echo "Description: Application skeleton webview" >> $(PKG_RASP)/DEBIAN/control
-	echo "Homepage: https://github.com/stephendltg/skeleton-go-webview" >> $(PKG_RASP)/DEBIAN/control
+	echo "Description: $(DESCRIPTION)}" >> $(PKG_RASP)/DEBIAN/control
+	echo "Homepage: ${HOMEPAGE}" >> $(PKG_RASP)/DEBIAN/control
 	GOOS=linux $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
 	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
 	sudo dpkg-deb --build $(PKG_RASP)
@@ -84,8 +92,13 @@ deps:
 	# go mod tidy
 	go mod verify
 
+nvm:
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${NVM}/install.sh | bash
+
 help:
 	@echo "make: compile packages and dependencies"
 	@echo "make tool: run specified go tool"
 	@echo "make clean: remove object files and cached files"
+	@echo "make nvm: insall nvm"
+	@echo "make pre-install: Pre install nodejs"
 	@echo "make deps: get the deployment tools"

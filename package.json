@@ -1,5 +1,5 @@
 {
-  "name": "skeleton-go-webview",
+  "name": "go-webview",
   "version": "0.0.1",
   "description": "Skeleton app webview with golang",
   "engines": {
