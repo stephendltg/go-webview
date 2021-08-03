@@ -48,31 +48,16 @@ build-deb:
 	rm -r $(PKG_LINUX)/*
 	rmdir $(PKG_LINUX)
 
-build-deb-rasp:
-	mkdir -p $(PKG_RASP)/DEBIAN
-	mkdir -p $(PKG_RASP)/usr/bin/
-	echo "Package: $(BINARY_NAME)" > $(PKG_RASP)/DEBIAN/control
-	echo "Version: $(VERSION)" >> $(PKG_RASP)/DEBIAN/control
-	echo "Section: custom" >> $(PKG_RASP)/DEBIAN/control
-	echo "Architecture: all" >> $(PKG_RASP)/DEBIAN/control
-	echo "Essential: no" >> $(PKG_RASP)/DEBIAN/control
-	echo "Depends: libwebkit2gtk-4.0-dev" >> $(PKG_RASP)/DEBIAN/control
-	echo "Maintainer: $(AUTHOR)" >> $(PKG_RASP)/DEBIAN/control
-	echo "Description: $(DESCRIPTION)}" >> $(PKG_RASP)/DEBIAN/control
-	echo "Homepage: ${HOMEPAGE}" >> $(PKG_RASP)/DEBIAN/control
-	GOOS=linux $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
-	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o $(PKG_RASP)/usr/bin/$(BINARY_NAME) .
-	sudo dpkg-deb --build $(PKG_RASP)
-	rm -r $(PKG_RASP)/*
-	rmdir $(PKG_RASP)
-
 build-linux:
-	GOOS=linux $(GOBUILD) -v -o $(BINARY_NAME)/usr/bin/$(BINARY_NAME) .
+	GOOS=linux GOARCH=amd64 $(GOBUILD) -v -o build/$(BINARY_NAME)-linux-amd64 .
+
+build-darwin:
+	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o build/$(BINARY_NAME)-darwin-amd64 .
 
 build-rasp:
 	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o build/$(BINARY_NAME)-rasp .
 
-build-darwin:
+build-darwin-pkg:
 	mkdir -p build/$(BINARY_NAME).app/Contents/Macos
 	mkdir -p build/$(BINARY_NAME).app/Contents/Resources
 	cp assets/info.plist build/$(BINARY_NAME).app/Contents/Resources/info.plist
@@ -80,7 +65,7 @@ build-darwin:
 	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o build/$(BINARY_NAME).app/Contents/MacOS/$(BINARY_NAME) .
 
 build-win:
-	GIN_MODE=release GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-H windowsgui" -v -o build/$(BINARY_NAME)-win-amd64.exe .
+	GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-H windowsgui" -v -o build/$(BINARY_NAME)-win-amd64.exe .
 
 tool:
 	$(GOVET) ./...; true
