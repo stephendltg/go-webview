@@ -24,6 +24,7 @@ pre-install:
 	@echo "Installing project ${BINARY_NAME}..."
 	. ${NVM_DIR}/nvm.sh && nvm install ${NODE} && nvm use ${NODE}
 	npm install
+	curl -fsSL https://deno.land/x/install/install.sh | sh
 
 dev:
 	$(GORUN) main.go -debug -title="my app" -dir="${PWD}/static"
