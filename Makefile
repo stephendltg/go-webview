@@ -25,6 +25,7 @@ pre-install:
 	. ${NVM_DIR}/nvm.sh && nvm install ${NODE} && nvm use ${NODE}
 	npm install
 	curl -fsSL https://deno.land/x/install/install.sh | sh
+	deno upgrade --version 1.12.2
 
 dev:
 	$(GORUN) main.go -debug -title="my app" -dir="${PWD}/static"
