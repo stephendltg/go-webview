@@ -23,6 +23,7 @@ all: deps tool build-app
 pre-install: 
 	@echo "Installing project ${BINARY_NAME}..."
 	. ${NVM_DIR}/nvm.sh && nvm install ${NODE} && nvm use ${NODE}
+	npm install
 
 dev:
 	$(GORUN) main.go
