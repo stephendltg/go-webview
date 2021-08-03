@@ -6,6 +6,8 @@ It uses Cocoa/WebKit on macOS, gtk-webkit2 on Linux and Edge on Windows 10.
 
 ## USAGE
 
+**GOLANG**
+
 ```
 webview [options]
 
@@ -20,6 +22,29 @@ webview [options]
   --height int
         height of the webview window (default 600)
 ```
+
+**Nodejs**
+
+```
+npm install --global .
+```
+
+```
+webview [options]
+
+  --dir string
+        path to serve (default ".")
+  --url string
+        instead of serving files, load this url
+  --title string
+        title of the webview window (default "webview")
+  --width int
+        width of the webview window (default 800)
+  --height int
+        height of the webview window (default 600)
+```
+
+
 
 
 
