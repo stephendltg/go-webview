@@ -23,6 +23,9 @@
     "fix": "standard-version -- --release-as minor"
   },
   "main": "index.js",
+  "bin": {
+    "webview": "cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stephendltg/skeleton-go-webview.git"
