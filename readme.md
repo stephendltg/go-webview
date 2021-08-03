@@ -4,6 +4,8 @@ It supports two-way JavaScript bindings (to call JavaScript from C/C++/Go and to
 
 It uses Cocoa/WebKit on macOS, gtk-webkit2 on Linux and Edge on Windows 10.
 
+__ref:__ https://gowebexamples.com/templates/
+
 ##  Distributing webview apps
 
 On Linux you get a standalone executable. It will depend on GTK3 and GtkWebkit2, so if you distribute your app in DEB or RPM format include those dependencies. An application icon can be specified by providing a .desktop file.

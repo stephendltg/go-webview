@@ -26,7 +26,7 @@ pre-install:
 	npm install
 
 dev:
-	$(GORUN) main.go
+	$(GORUN) main.go -debug -title="my app" -dir="${PWD}/static"
 
 build-app:
 	$(GOBUILD) -v -race .
