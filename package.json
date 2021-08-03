@@ -1,7 +1,7 @@
 {
-  "name": "go-webview",
+  "name": "webview",
   "version": "0.0.2",
-  "description": "Skeleton app webview with golang",
+  "description": "Binary webview with golang",
   "engines": {
     "go": "1.16"
   },

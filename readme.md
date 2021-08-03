@@ -1,10 +1,27 @@
-# SKELETON WEBVIEW GOLANG
+# WEBVIEW GOLANG
 
 It supports two-way JavaScript bindings (to call JavaScript from C/C++/Go and to call C/C++/Go from JavaScript).
 
 It uses Cocoa/WebKit on macOS, gtk-webkit2 on Linux and Edge on Windows 10.
 
-__ref:__ https://gowebexamples.com/templates/
+## USAGE
+
+```
+webview [options]
+
+  --dir string
+        path to serve (default ".")
+  --url string
+        instead of serving files, load this url
+  --title string
+        title of the webview window (default "webview")
+  --width int
+        width of the webview window (default 800)
+  --height int
+        height of the webview window (default 600)
+```
+
+
 
 ##  Distributing webview apps
 
@@ -14,21 +31,6 @@ On Linux you get a standalone executable. It will depend on GTK3 and GtkWebkit2,
 sudo apt-get install libwebkit2gtk-4.0-dev
 ```
 
-On MacOS you are likely to ship an app bundle. Make the following directory structure and just zip it:
-
-example.app
-└── Contents
-    ├── Info.plist
-    ├── MacOS
-    |   └── example
-    └── Resources
-        └── example.icns
-Here, Info.plist is a property list file and *.icns is a special icon format. You may convert PNG to icns online.
-
-On Windows you probably would like to have a custom icon for your executable. It can be done by providing a resource file, compiling it and linking with it. Typically, windres utility is used to compile resources. Also, on Windows, webview.dll and WebView2Loader.dll must be placed into the same directory with your app executable.
-
-Also, if you want to cross-compile your webview app - use xgo (https://github.com/karalabe/xgo).
-
 ## GENERATE DEBIAN PACKAGE
 
 __ref:__ http://sdz.tdct.org/sdz/creer-un-paquet-deb.html
@@ -36,6 +38,8 @@ __ref:__ http://sdz.tdct.org/sdz/creer-un-paquet-deb.html
 __red:__ https://github.com/practice-golang/hello-cmake
 
 __ref:__ https://stackoverflow.com/questions/61507209/creating-a-go-binary-as-debian-binary-package-for-a-custom-repository
+
+__ref:__ https://gowebexamples.com/templates/
 
 
 ## INSTALL AND REMOVE DEB

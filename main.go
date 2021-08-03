@@ -19,7 +19,7 @@ var (
 	height = flag.Int("height", 600, "Webview height")
 	width  = flag.Int("width", 800, "Webview width")
 	url    = flag.String("url", "", "Naviagte to this url")
-	dir    = flag.String("dir", "./static", "path to serve")
+	dir    = flag.String("dir", ".", "path to serve")
 )
 
 // Init
