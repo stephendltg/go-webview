@@ -16,7 +16,7 @@
   "scripts": {
     "build": "make",
     "clean": "make clean",
-    "prepare": "husky install",
+    "prepare": "husky install && sudo apt-get install libwebkit2gtk-4.0-dev -y",
     "svn": "bash scripts/release.sh",
     "release": "standard-version",
     "prerelease": "standard-version -- --prerelease",
