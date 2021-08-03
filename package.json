@@ -1,6 +1,6 @@
 {
   "name": "go-webview",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Skeleton app webview with golang",
   "engines": {
     "go": "1.16"
@@ -17,7 +17,10 @@
     "build": "make",
     "clean": "make clean",
     "prepare": "husky install",
-    "svn": "bash scripts/release.sh"
+    "svn": "bash scripts/release.sh",
+    "release": "standard-version",
+    "prerelease": "standard-version -- --prerelease",
+    "fix": "standard-version -- --release-as minor"
   },
   "main": "index.js",
   "repository": {
@@ -35,8 +38,9 @@
   },
   "homepage": "https://github.com/stephendltg/skeleton-go-webview#readme",
   "devDependencies": {
-    "husky": "^7.0.1",
     "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0"
+    "@commitlint/config-conventional": "^13.1.0",
+    "husky": "^7.0.1",
+    "standard-version": "^9.3.1"
   }
 }
