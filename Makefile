@@ -73,6 +73,9 @@ build-rasp:
 
 build-darwin:
 	mkdir -p build/$(BINARY_NAME).app/Contents/Macos
+	mkdir -p build/$(BINARY_NAME).app/Contents/Resources
+	cp assets/info.plist build/$(BINARY_NAME).app/Contents/Resources/info.plist
+	cp assets/icon.icns build/$(BINARY_NAME).app/Contents/Resources
 	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o build/$(BINARY_NAME).app/Contents/MacOS/$(BINARY_NAME) .
 
 build-win:
