@@ -75,7 +75,6 @@ tool:
 clean:
 	go clean -i .
 	rm -f $(BINARY_NAME)
-	rm -r bin/*
 
 deps:
 	go mod vendor
