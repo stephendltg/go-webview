@@ -23,7 +23,6 @@
     "prerelease": "standard-version -- --prerelease",
     "fix": "standard-version -- --release-as minor"
   },
-  "main": "index.js",
   "bin": {
     "webview": "cli.js"
   },
