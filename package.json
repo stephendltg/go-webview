@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stephendltg/skeleton-go-webview.git"
+    "url": "git+https://github.com/stephendltg/go-webview.git"
   },
   "keywords": [
     "golang",
@@ -42,9 +42,9 @@
   "author": "stephendltg",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stephendltg/skeleton-go-webview/issues"
+    "url": "https://github.com/stephendltg/go-webview/issues"
   },
-  "homepage": "https://github.com/stephendltg/skeleton-go-webview#readme",
+  "homepage": "https://github.com/stephendltg/go-webview#readme",
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
