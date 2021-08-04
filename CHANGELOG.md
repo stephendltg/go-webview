@@ -1,8 +1,19 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See
-[standard-version](https://github.com/conventional-changelog/standard-version)
-for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.0.5](https://github.com/stephendltg/go-webview/compare/v0.0.4...v0.0.5) (2021-08-04)
+
+
+### Features
+
+* **deno:** add deno method ([59bfd99](https://github.com/stephendltg/go-webview/commit/59bfd993d5109499d5e42f253df579a814ac03ef))
+
+
+### Bug Fixes
+
+* **bundle:** change dir bin ([7b1a594](https://github.com/stephendltg/go-webview/commit/7b1a5945cc0e0ece7914303ec2ab4c2ffb93fdeb))
+* **deno:** add dirname in path ([b82c379](https://github.com/stephendltg/go-webview/commit/b82c379fb78bc3e6bb8631de0441af8a66c691a7))
 
 ### [0.0.4](https://github.com/stephendltg/skeleton-go-webview/compare/v0.0.3...v0.0.4) (2021-08-03)
 
