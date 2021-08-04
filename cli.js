@@ -4,9 +4,7 @@ var path = require("path");
 
 var binaryPath;
 if (process.platform === "win32") {
-  throw new Error(
-    "Unsupported platform: " + process.platform + " Cooming soon!",
-  );
+  binaryPath = path.join(__dirname, "bin", "webview-win32-amd64");
 } else if (process.platform === "darwin") {
   throw new Error(
     "Unsupported platform: " + process.platform + " Cooming soon!",

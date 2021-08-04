@@ -8,7 +8,7 @@
   "os": [
     "darwin",
     "linux",
-    "window"
+    "win32"
   ],
   "contributors": [
     "stephen@epyo.eu"
@@ -19,7 +19,7 @@
     "release": "standard-version",
     "prerelease": "standard-version -- --prerelease",
     "fix": "standard-version -- --release-as minor",
-    "node:run": "node cli.js --dir='static'",
+    "node:run": "node cli.js --url=http://google.com",
     "deno": "deno run --allow-all --watch webviewd.ts --url=http://google.com --title=test",
     "deno:tools": "deno info && deno fmt webviewd.ts && deno lint webviewd.ts",
     "deno:bundle": "deno bundle webviewd.ts bin/webview.bundle.js",

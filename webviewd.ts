@@ -8,7 +8,7 @@ const __dirname = new URL(".", import.meta.url).pathname;
 var binaryPath;
 
 if (Deno.build.os === "windows") {
-  log.warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
+  binaryPath = join(__dirname, "bin", "webview-win32-amd64.exe").slice(1);
 } else if (Deno.build.os === "darwin") {
   log.warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
 } else if (Deno.build.os === "linux") {

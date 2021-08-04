@@ -66,7 +66,7 @@ build-darwin-pkg:
 	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o bin/$(BINARY_NAME).app/Contents/MacOS/$(BINARY_NAME) .
 
 build-win:
-	GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-H windowsgui" -v -o bin/$(BINARY_NAME)-win-amd64.exe .
+	GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-H windowsgui" -v -o bin/$(BINARY_NAME)-win32-amd64.exe .
 
 tool:
 	$(GOVET) ./...; true
