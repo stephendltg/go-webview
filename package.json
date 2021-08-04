@@ -1,6 +1,6 @@
 {
   "name": "webview",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Binary webview with golang",
   "engines": {
     "go": "1.16"

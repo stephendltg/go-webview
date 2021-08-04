@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/stephendltg/go-webview/compare/v0.0.6...v0.0.7) (2021-08-04)
+
+
+### Features
+
+* **bundle:** add win32 support ([d5b54f4](https://github.com/stephendltg/go-webview/commit/d5b54f442e07630b7d2bceb7e4f8ad8e074ce8ae))
+
 ### [0.0.6](https://github.com/stephendltg/go-webview/compare/v0.0.5...v0.0.6) (2021-08-04)
 
 ### [0.0.5](https://github.com/stephendltg/go-webview/compare/v0.0.4...v0.0.5) (2021-08-04)
