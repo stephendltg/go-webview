@@ -2,7 +2,13 @@
 
 It supports two-way JavaScript bindings (to call JavaScript from C/C++/Go and to call C/C++/Go from JavaScript).
 
-It uses Cocoa/WebKit on macOS, gtk-webkit2 on Linux and Edge on Windows 10.
+It uses Cocoa/WebKit on macOS, gtk-webkit2 on Linux and Edge on Windows 10. 
+
+**post-install[linux]:**
+
+```
+sudo apt-get install libwebkit2gtk-4.0-dev
+```
 
 ## USAGE
 

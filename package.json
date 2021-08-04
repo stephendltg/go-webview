@@ -14,10 +14,10 @@
     "stephen@epyo.eu"
   ],
   "scripts": {
-    "start": "node cli.js --dir=./static --title=myapp",
+    "test": "node cli.js --dir='static'",
     "build": "make",
     "clean": "make clean",
-    "prepare": "husky install && sudo apt-get install libwebkit2gtk-4.0-dev -y",
+    "prepare": "husky install",
     "svn": "bash scripts/release.sh",
     "release": "standard-version",
     "prerelease": "standard-version -- --prerelease",

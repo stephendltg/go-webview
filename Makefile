@@ -9,8 +9,7 @@ GOVET=$(GOCMD) vet
 GOFMT=gofmt
 GOLINT=golint
 BINARY_NAME=$(shell node -p "require('./package.json').name")
-PKG_LINUX=build/${BINARY_NAME}-linux
-PKG_RASP=build/${BINARY_NAME}-rasp
+PKG_LINUX=bin/${BINARY_NAME}-linux
 VERSION := $(shell node -p "require('./package.json').version")
 DESCRIPTION := $(shell node -p "require('./package.json').description")
 HOMEPAGE := $(shell node -p "require('./package.json').homepage")
@@ -51,23 +50,23 @@ build-deb:
 	rmdir $(PKG_LINUX)
 
 build-linux:
-	GOOS=linux GOARCH=amd64 $(GOBUILD) -v -o build/$(BINARY_NAME)-linux-amd64 .
+	GOOS=linux GOARCH=amd64 $(GOBUILD) -v -o bin/$(BINARY_NAME)-linux-amd64 .
 
 build-darwin:
-	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o build/$(BINARY_NAME)-darwin-amd64 .
+	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o bin/$(BINARY_NAME)-darwin-amd64 .
 
 build-rasp:
-	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o build/$(BINARY_NAME)-rasp .
+	GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -v -o bin/$(BINARY_NAME)-rasp .
 
 build-darwin-pkg:
 	mkdir -p build/$(BINARY_NAME).app/Contents/Macos
 	mkdir -p build/$(BINARY_NAME).app/Contents/Resources
 	cp assets/info.plist build/$(BINARY_NAME).app/Contents/Resources/info.plist
 	cp assets/icon.icns build/$(BINARY_NAME).app/Contents/Resources
-	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o build/$(BINARY_NAME).app/Contents/MacOS/$(BINARY_NAME) .
+	GOOS=darwin GOARCH=amd64 $(GOBUILD) -v -o bin/$(BINARY_NAME).app/Contents/MacOS/$(BINARY_NAME) .
 
 build-win:
-	GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-H windowsgui" -v -o build/$(BINARY_NAME)-win-amd64.exe .
+	GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-H windowsgui" -v -o bin/$(BINARY_NAME)-win-amd64.exe .
 
 tool:
 	$(GOVET) ./...; true
@@ -76,7 +75,7 @@ tool:
 clean:
 	go clean -i .
 	rm -f $(BINARY_NAME)
-	rm -r build/*
+	rm -r bin/*
 
 deps:
 	go mod vendor
