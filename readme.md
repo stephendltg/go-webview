@@ -50,6 +50,23 @@ webview [options]
         height of the webview window (default 600)
 ```
 
+**Deno**
+
+```
+deno run --allow-run --allow-env mod.ts
+
+  --dir string
+        path to serve (default ".")
+  --url string
+        instead of serving files, load this url
+  --title string
+        title of the webview window (default "webview")
+  --width int
+        width of the webview window (default 800)
+  --height int
+        height of the webview window (default 600)
+```
+
 
 
 
