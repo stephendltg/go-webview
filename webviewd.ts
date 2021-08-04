@@ -3,7 +3,7 @@
 import { join } from "https://deno.land/std@0.103.0/path/mod.ts";
 import * as log from "https://deno.land/std@0.103.0/log/mod.ts";
 
-const __dirname = new URL('.', import.meta.url).pathname;
+const __dirname = new URL(".", import.meta.url).pathname;
 
 var binaryPath;
 
@@ -12,7 +12,7 @@ if (Deno.build.os === "windows") {
 } else if (Deno.build.os === "darwin") {
   log.warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
 } else if (Deno.build.os === "linux") {
-  binaryPath = join( __dirname, "bin", "webview-linux-amd64");
+  binaryPath = join(__dirname, "bin", "webview-linux-amd64");
 } else {
   log.critical("⚠ Unsupported platform: " + Deno.build.os);
 }
@@ -23,11 +23,10 @@ if (!binaryPath) {
 
 // create webview
 const webview = Deno.run({
-  cmd: [ binaryPath, ...Deno.args],
+  cmd: [binaryPath, ...Deno.args],
   stdout: "piped",
-  stderr: "piped"
+  stderr: "piped",
 });
-
 
 // await its completion
 const { code } = await webview.status();
@@ -42,4 +41,4 @@ if (code === 0) {
   console.log(errorString);
 }
 
-Deno.exit(code)
+Deno.exit(code);
