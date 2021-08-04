@@ -52,8 +52,13 @@ webview [options]
 
 **Deno**
 
+
 ```
-deno run --allow-run --allow-env mod.ts
+deno install -f -A webviewd.ts
+```
+
+```
+webviewd [options]
 
   --dir string
         path to serve (default ".")

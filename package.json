@@ -23,8 +23,10 @@
     "prerelease": "standard-version -- --prerelease",
     "fix": "standard-version -- --release-as minor",
     "deno": "deno run --allow-all --watch mod.ts --url=http://google.com --title=test",
-    "deno:bundle": "deno bundle mod.ts bin/webview.bundle.js && deno run --allow-env --allow-run bin/webview.bundle.js --title=test --dir=static",
-    "deno:build": "deno compile --allow-env --allow-run --output bin/denowebview mod.ts && bin/denowebview --dir=static"
+    "deno:bundle": "deno bundle webviewd.ts bin/webview.bundle.js",
+    "deno:bundle:run": "deno run --allow-env --allow-run bin/webview.bundle.js --title=test --dir=static",
+    "deno:build": "deno compile --allow-env --allow-run --output bin/denowebview webviewd.ts",
+    "deno:build:run": "bin/denowebview --dir=static"
   },
   "bin": {
     "webview": "cli.js"
