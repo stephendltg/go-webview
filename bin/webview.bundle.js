@@ -2086,13 +2086,18 @@ async function setup(config) {
     }
 }
 await setup(DEFAULT_CONFIG);
+const importMeta = {
+    url: "file:///home/stephen/github/skeleton-go-webview/webviewd.ts",
+    main: import.meta.main
+};
+const __dirname = new URL('.', importMeta.url).pathname;
 var binaryPath;
 if (Deno.build.os === "windows") {
     warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
 } else if (Deno.build.os === "darwin") {
     warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
 } else if (Deno.build.os === "linux") {
-    binaryPath = join2("bin", "webview-linux-amd64");
+    binaryPath = join2(__dirname, "bin", "webview-linux-amd64");
 } else {
     critical("⚠ Unsupported platform: " + Deno.build.os);
 }

@@ -3,6 +3,8 @@
 import { join } from "https://deno.land/std@0.103.0/path/mod.ts";
 import * as log from "https://deno.land/std@0.103.0/log/mod.ts";
 
+const __dirname = new URL('.', import.meta.url).pathname;
+
 var binaryPath;
 
 if (Deno.build.os === "windows") {
@@ -10,7 +12,7 @@ if (Deno.build.os === "windows") {
 } else if (Deno.build.os === "darwin") {
   log.warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
 } else if (Deno.build.os === "linux") {
-  binaryPath = join("bin", "webview-linux-amd64");
+  binaryPath = join( __dirname, "bin", "webview-linux-amd64");
 } else {
   log.critical("⚠ Unsupported platform: " + Deno.build.os);
 }
