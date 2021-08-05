@@ -1,0 +1,16 @@
+{
+  "appId": "com.webview.app",
+  "appName": "webview",
+  "webDir": "dist",
+  "bundledWebRuntime": true,
+  "backgroundColor": "#000",
+  "hideLogs": true,
+  "android": {
+    "backgroundColor": "#e5e5e5",
+    "webContentsDebuggingEnabled": false,
+    "hideLogs": true
+  },
+  "ios": {
+    "hideLogs": true
+  }
+}
