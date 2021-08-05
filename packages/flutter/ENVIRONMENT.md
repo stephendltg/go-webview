@@ -10,9 +10,16 @@ sudo snap install flutter --classic
 flutter sdk-path
 ```
 
+__doctor:__
+
 ```
 flutter doctor
 flutter doctor -v
+```
+
+__which flutter:__
+
+```
 which flutter
 ```
 
@@ -24,9 +31,12 @@ __ref:__ https://developer.android.com/studio
 
 2. Go to SDK Tools tab
 3. Install Android SDK Command-line Tools (latest)
-4. 
-> flutter doctor
-> flutter doctor --android-licenses
+4. Check
+
+```
+flutter doctor
+flutter doctor --android-licenses
+```
 
 
 __ref:__ https://flutter.dev/docs/get-started/install/linux
