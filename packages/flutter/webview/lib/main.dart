@@ -20,9 +20,9 @@ const String kNavigationExamplePage = '''
 The navigation delegate is set to block navigation to the youtube website.
 </p>
 <ul>
-<ul><a href="https://www.youtube.com/">https://www.youtube.com/</a></ul>
-<ul><a href="https://www.google.com/">https://www.google.com/</a></ul>
-<ul><a href="http://82.165.110.160/apps">Easydis</a></ul>
+<ul><a href="https://www.youtube.com/">YOUTUBE</a></ul>
+<ul><a href="https://www.google.com/">GOOGLE/</a></ul>
+<ul><a href="http://82.165.110.160/apps">EASYDIS</a></ul>
 </ul>
 </body>
 </html>
@@ -47,7 +47,7 @@ class _WebViewExampleState extends State<WebViewExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter WebView example'),
+        title: const Text('WebView'),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
         actions: <Widget>[
           NavigationControls(_controller.future),
