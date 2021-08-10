@@ -10,30 +10,25 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-void main() => runApp(MaterialApp(home: WebViewExample()));
+import 'config.dart';
 
-const String kNavigationExamplePage = '''
-<!DOCTYPE html><html>
-<head><title>Navigation Delegate Example</title></head>
-<body>
-<p>
-The navigation delegate is set to block navigation to the youtube website.
-</p>
-<ul>
-<ul><a href="https://www.youtube.com/">YOUTUBE</a></ul>
-<ul><a href="https://www.google.com/">GOOGLE/</a></ul>
-<ul><a href="http://82.165.110.160/apps">EASYDIS</a></ul>
-</ul>
-</body>
-</html>
-''';
-
-class WebViewExample extends StatefulWidget {
-  @override
-  _WebViewExampleState createState() => _WebViewExampleState();
+// Main app
+void main() {
+  runApp(
+    MaterialApp(
+      home: WebViewApp(),
+    ),
+  );
 }
 
-class _WebViewExampleState extends State<WebViewExample> {
+// Class webview
+class WebViewApp extends StatefulWidget {
+  @override
+  _WebViewAppState createState() => _WebViewAppState();
+}
+
+// Class webview state
+class _WebViewAppState extends State<WebViewApp> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 
@@ -45,49 +40,81 @@ class _WebViewExampleState extends State<WebViewExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('WebView'),
-        // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
-        actions: <Widget>[
-          NavigationControls(_controller.future),
-          SampleMenu(_controller.future),
-        ],
+    // Sidenav
+    final drawerHeader = UserAccountsDrawerHeader(
+      accountName: Text(WEBVIEW_TITTLE),
+      accountEmail: Text(WEBVIEW_AUTHOR),
+      currentAccountPicture: const CircleAvatar(
+        child: FlutterLogo(size: 42.0),
       ),
-      // We're using a Builder here so we have a context that is below the Scaffold
-      // to allow calling Scaffold.of(context) so we can show a snackbar.
-      body: Builder(builder: (BuildContext context) {
-        return WebView(
-          initialUrl: 'http://82.165.110.160/apps',
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
-          },
-          onProgress: (int progress) {
-            print("WebView is loading (progress : $progress%)");
-          },
-          javascriptChannels: <JavascriptChannel>{
-            _toasterJavascriptChannel(context),
-          },
-          navigationDelegate: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              print('blocking navigation to $request}');
-              return NavigationDecision.prevent;
-            }
-            print('allowing navigation to $request');
-            return NavigationDecision.navigate;
-          },
-          onPageStarted: (String url) {
-            print('Page started loading: $url');
-          },
-          onPageFinished: (String url) {
-            print('Page finished loading: $url');
-          },
-          gestureNavigationEnabled: true,
-        );
-      }),
-      floatingActionButton: favoriteButton(),
     );
+    final drawerItems = ListView(
+      children: [
+        drawerHeader,
+        ListTile(
+          title: Text(
+            "tttt",
+          ),
+          leading: const Icon(Icons.favorite),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: Text(
+            "test",
+          ),
+          leading: const Icon(Icons.comment),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
+
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text(WEBVIEW_TITTLE),
+          actions: <Widget>[
+            NavigationControls(_controller.future),
+            SampleMenu(_controller.future),
+          ],
+        ),
+        // We're using a Builder here so we have a context that is below the Scaffold
+        // to allow calling Scaffold.of(context) so we can show a snackbar.
+        body: Builder(builder: (BuildContext context) {
+          return WebView(
+            initialUrl: WEBVIEW_URL,
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController webViewController) {
+              _controller.complete(webViewController);
+            },
+            onProgress: (int progress) {
+              print("WebView is loading (progress : $progress%)");
+            },
+            javascriptChannels: <JavascriptChannel>{
+              _toasterJavascriptChannel(context),
+            },
+            // navigationDelegate: (NavigationRequest request) {
+            //   if (request.url.startsWith('https://www.youtube.com/')) {
+            //     print('blocking navigation to $request}');
+            //     return NavigationDecision.prevent;
+            //   }
+            //   print('allowing navigation to $request');
+            //   return NavigationDecision.navigate;
+            // },
+            onPageStarted: (String url) {
+              print('Page started loading: $url');
+            },
+            onPageFinished: (String url) {
+              print('Page finished loading: $url');
+            },
+            gestureNavigationEnabled: true,
+          );
+        }),
+        drawer: Drawer(
+          child: drawerItems,
+        ));
   }
 
   JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
@@ -98,27 +125,6 @@ class _WebViewExampleState extends State<WebViewExample> {
           Scaffold.of(context).showSnackBar(
             SnackBar(content: Text(message.message)),
           );
-        });
-  }
-
-  Widget favoriteButton() {
-    return FutureBuilder<WebViewController>(
-        future: _controller.future,
-        builder: (BuildContext context,
-            AsyncSnapshot<WebViewController> controller) {
-          if (controller.hasData) {
-            return FloatingActionButton(
-              onPressed: () async {
-                final String url = (await controller.data!.currentUrl())!;
-                // ignore: deprecated_member_use
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(content: Text('Favorited $url')),
-                );
-              },
-              child: const Icon(Icons.favorite),
-            );
-          }
-          return Container();
         });
   }
 }
@@ -270,7 +276,7 @@ class SampleMenu extends StatelessWidget {
   void _onNavigationDelegateExample(
       WebViewController controller, BuildContext context) async {
     final String contentBase64 =
-        base64Encode(const Utf8Encoder().convert(kNavigationExamplePage));
+        base64Encode(const Utf8Encoder().convert(WEBVIEW_TEMPLATE_STATIC));
     await controller.loadUrl('data:text/html;base64,$contentBase64');
   }
 
