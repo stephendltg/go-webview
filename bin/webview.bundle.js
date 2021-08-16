@@ -531,7 +531,7 @@ function basename(path, ext = "") {
                 }
                 if (extIdx >= 0) {
                     if (code === ext.charCodeAt(extIdx)) {
-                        if ((--extIdx) === -1) {
+                        if (--extIdx === -1) {
                             end = i;
                         }
                     } else {
@@ -915,7 +915,7 @@ function basename1(path, ext = "") {
                 }
                 if (extIdx >= 0) {
                     if (code === ext.charCodeAt(extIdx)) {
-                        if ((--extIdx) === -1) {
+                        if (--extIdx === -1) {
                             end = i;
                         }
                     } else {
@@ -2031,12 +2031,6 @@ function getLogger(name) {
     }
     return result;
 }
-function warning(msg, ...args) {
-    if (msg instanceof Function) {
-        return getLogger("default").warning(msg, ...args);
-    }
-    return getLogger("default").warning(msg, ...args);
-}
 function critical(msg, ...args) {
     if (msg instanceof Function) {
         return getLogger("default").critical(msg, ...args);
@@ -2087,15 +2081,15 @@ async function setup(config) {
 }
 await setup(DEFAULT_CONFIG);
 const importMeta = {
-    url: "file:///home/stephen/github/go-webview/webviewd.ts",
+    url: "file:///Users/stephendeletang/Documents/github/go-webview/webviewd.ts",
     main: import.meta.main
 };
 const __dirname = new URL(".", importMeta.url).pathname;
 var binaryPath;
 if (Deno.build.os === "windows") {
-    warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
+    binaryPath = join2(__dirname, "bin", "webview-win32-amd64.exe").slice(1);
 } else if (Deno.build.os === "darwin") {
-    warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
+    binaryPath = join2(__dirname, "bin", "webview-darwin-amd64");
 } else if (Deno.build.os === "linux") {
     binaryPath = join2(__dirname, "bin", "webview-linux-amd64");
 } else {
