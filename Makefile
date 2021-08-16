@@ -16,6 +16,7 @@ HOMEPAGE := $(shell node -p "require('./package.json').homepage")
 AUTHOR=stephendltg
 NODE=v14.16.1
 NVM=v0.38.0
+DENO=1.13.0
 
 all: deps tool build-app
 
@@ -24,7 +25,7 @@ pre-install:
 	. ${NVM_DIR}/nvm.sh && nvm install ${NODE} && nvm use ${NODE}
 	npm install
 	curl -fsSL https://deno.land/x/install/install.sh | sh
-	deno upgrade --version 1.12.2
+	deno upgrade --version ${DENO}
 
 dev:
 	$(GORUN) main.go -debug -title="my app" -dir="${PWD}/static"

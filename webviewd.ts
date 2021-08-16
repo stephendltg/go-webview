@@ -10,7 +10,7 @@ var binaryPath;
 if (Deno.build.os === "windows") {
   binaryPath = join(__dirname, "bin", "webview-win32-amd64.exe").slice(1);
 } else if (Deno.build.os === "darwin") {
-  log.warning("⚠ Unsupported platform: " + Deno.build.os + " Cooming soon!");
+  binaryPath = join(__dirname, "bin", "webview-darwin-amd64");
 } else if (Deno.build.os === "linux") {
   binaryPath = join(__dirname, "bin", "webview-linux-amd64");
 } else {
